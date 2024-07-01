@@ -9,7 +9,6 @@ function App() {
     <Router>
       <div className="App">
         <Routes>
-          {/* The Login component is rendered when the /login path is matched */}
           <Route path="/" element={<LandingPage />} />
         </Routes>
       </div>
