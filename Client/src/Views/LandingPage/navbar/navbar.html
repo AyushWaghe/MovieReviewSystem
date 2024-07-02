@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Review System</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="navbar.css" />
+  </head>
+  <body>
+    <!-- Navigation -->
+    <nav class="navbar">
+      <!-- Navigation Content -->
+      <div class="content">
+        <!-- Logo -->
+        <div class="logo">
+          <img src="logo.png" alt="logo" />
+          <h1>PremiereMovieCritics</h1>
+        </div>
+
+        <!-- Links -->
+        <div class="desktop">
+          <ul class="links">
+            <li>  
+              <div class="searchbar">
+                <div class="dropdown">
+                  
+                  <div id ="drop-text" class="dropdown-text">
+                    <span id="span">Filters</span>
+                    <i id="icon" class="fa-solid fa-chevron-down"></i>
+                  </div>
+                  <div class="dropdown-content">
+                    <div class="category">
+                        <span>Rating</span>
+                        <label><input type="checkbox" value="1"> 1 star</label>
+                        <label><input type="checkbox" value="2"> 2 stars</label>
+                        <label><input type="checkbox" value="3"> 3 stars</label>
+                        <label><input type="checkbox" value="4"> 4 stars</label>
+                        <label><input type="checkbox" value="5"> 5 stars</label>
+                    </div>
+                    <div class="category">
+                        <span>Genre</span>
+                        <label><input type="checkbox" value="action"> Action</label>
+                        <label><input type="checkbox" value="comedy"> Comedy</label>
+                        <label><input type="checkbox" value="horror"> Horror</label>
+                        <label><input type="checkbox" value="love"> Love</label>
+                        <label><input type="checkbox" value="drama"> Drama</label>
+                        <label><input type="checkbox" value="sci-fi"> Sci-fi</label>
+                    </div>
+                    <button class="apply-btn">Apply</button>
+                  </div>
+                </div>
+                <div class="search-box">
+                  <input type="text" id="search-input" placeholder="Search for movies">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+              </div>
+            </li>
+            <li>
+              <a href="#">Home</a>
+            </li>
+            <li><a href="#">Movies</a></li>
+          </ul>
+          <div class="button">
+            <button class="btn signin">Signin</button>
+            <button class="btn signup">Signup</button>
+          </div>
+        </div>
+        <!-- Menu Icon -->
+        <div class="menu-icon" onclick="toggle()">
+          <i class="fa-solid fa-bars"></i>
+        </div>
+      </div>
+    </nav>
+    <!-- Mobile Navigation -->
+    <ul class="mobile-nav">
+      <li class="active">
+        <i class="fa-solid fa-house"></i>
+
+        <a href="#">Home</a>
+      </li>
+      <li>
+        <i class="fa-solid fa-film"></i>
+        <a href="#">Movies</a>
+      </li>
+      <li>
+        <i class="fa-solid fa-right-to-bracket"></i>
+
+        <a href="#">SignIn</a>
+      </li>
+      <li>
+        <i class="fa-solid fa-user-plus"></i>
+
+        <a href="#">SignUp</a>
+      </li>
+    </ul>
+
+    <!-- Backdrop -->
+    <div class="backdrop" onclick="toggle()"></div>
+
+    <div class="content-list">
+      <div class="list-container">
+        <h3 class="list-header">You might also search for...</h3>
+          <ul class="item-list">
+              <li href="">Highly-rated 10 movies</li>
+              <li href="">Least-rated 10 movies</li>
+              <li href="">Recently released top 10 movies</li>
+              <li href="">Oldest movies</li>
+          </ul>
+      </div>
+    </div>
+
+    <script src="navbar.js"></script>
+  </body>
+</html>
