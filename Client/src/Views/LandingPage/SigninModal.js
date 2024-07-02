@@ -1,13 +1,18 @@
 import React, { useState } from 'react';
 import './styles.css';
+import {useNavigate} from 'react-router-dom';
 
 function SigninModal({ setOpenModal }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigate = useNavigate();
+
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('Sign in submitted:', email, password);
+    setOpenModal(null);
+    navigate('/movies');
   };
 
   return (

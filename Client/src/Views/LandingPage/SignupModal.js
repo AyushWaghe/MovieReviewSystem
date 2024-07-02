@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './styles.css';
 
 function SignupModal({ setOpenModal }) {
@@ -6,10 +7,13 @@ function SignupModal({ setOpenModal }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log('Sign up submitted:', name, email, password, confirmPassword);
+    setOpenModal(null);
+    navigate('/movies');
   };
 
   return (
