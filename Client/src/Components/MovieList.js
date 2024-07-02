@@ -8,7 +8,7 @@ const MovieList = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    // Use the real movie data
+    
     setMovies(moviesData);
   }, []);
 

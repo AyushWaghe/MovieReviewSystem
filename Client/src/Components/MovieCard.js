@@ -1,4 +1,3 @@
-// client/src/components/MovieCard.js
 import React from 'react';
 import './MovieCard.css';
 
@@ -11,6 +10,7 @@ const MovieCard = ({ movie }) => {
         <p>Duration: {movie.duration} min</p>
         <p>Average Stars: {movie.rating} ★</p>
         <p>Summary: {movie.summary}</p>
+        <p>Year: {movie.year}</p>
       </div>
     </div>
   );
