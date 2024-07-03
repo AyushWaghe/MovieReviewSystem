@@ -1,9 +1,9 @@
 // client/src/components/MovieList.js
 import React, { useState, useEffect } from 'react';
 import MovieCard from './MovieCard';
-import moviesData from '../moviesData';
+import moviesData from '../../moviesData';
 import './MovieList.css';
-import Navbar from './navBar';
+import Navbar from '../NavBar/navBar';
 
 
 const MovieList = () => {

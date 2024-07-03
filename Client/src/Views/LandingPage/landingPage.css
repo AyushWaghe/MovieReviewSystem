@@ -23,7 +23,7 @@
   
     width: 100%;
     height: 100vh;
-    background-image: url("/Users/bellamkondagreeshma/Downloads/MovieReviewSystem-main copy/Client/src/assets/images/HomeImageDiv.jpg");
+    background-image: url("../../assets/images/HomeImageDiv.jpg");
 
     @media (max-width: 1000px) {
       .HomeDiv {
