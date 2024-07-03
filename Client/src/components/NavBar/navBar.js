@@ -1,8 +1,18 @@
-// client/src/components/Navbar.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './navBar.css';
+import axios from 'axios';
 
-const Navbar = () => {
+const Navbar = ({ filterData }) => {
+
+  const [searchMovie,setSearchMovie]=useState("");
+
+  const selectedFilters = {
+    ratings: [],
+    genres: [],
+    movieTitle:"",
+    superId: ""
+  };
+
   const toggle = () => {
     // toggle 'how' class on mobile menu
     const mobileMenu = document.querySelector('.mobile-nav');
@@ -22,12 +32,7 @@ const Navbar = () => {
     }
   };
 
-  const applyFilters = () => {
-    // Collect selected filters
-    const selectedFilters = {
-      ratings: [],
-      genres: [],
-    };
+  const handleApplyFiltersClick = async () => {
 
     document.querySelectorAll('.dropdown-content input[type="checkbox"]:checked').forEach((checkbox) => {
       const category = checkbox.closest('.category').querySelector('span').innerText.toLowerCase();
@@ -39,8 +44,7 @@ const Navbar = () => {
     });
 
     // Perform search with the selected filters
-    // For demonstration, we'll just log the filters
-    console.log('Selected Filters:', selectedFilters);
+    // console.log('Selected Filters:', selectedFilters);
 
     // Close the dropdown after applying filters
     const dropdownContent = document.querySelector('.dropdown-content');
@@ -48,9 +52,19 @@ const Navbar = () => {
     dropdownContent.style.display = 'none';
     icon.style.transform = 'rotate(0deg)';
 
-    // Replace the following line with actual search functionality
-    // document.getElementById('results').innerText = `Searching with filters: ${JSON.stringify(selectedFilters)}`;
+    filterData(selectedFilters);
   };
+
+  const handleSearchClick=()=>{
+    selectedFilters.movieTitle=searchMovie;
+    selectedFilters.genres=[];
+    selectedFilters.ratings=[];
+    filterData(selectedFilters);
+  }
+
+  // useEffect(() => {
+  //   handleApplyFiltersClick(); // This will execute once when component mounts
+  // }, []);
 
   return (
     <nav className="navbar">
@@ -59,7 +73,6 @@ const Navbar = () => {
         {/* Logo */}
         <div className="logo">
           <img src="logo.png" alt="logo" />
-          
         </div>
 
         {/* Desktop Navigation */}
@@ -106,23 +119,29 @@ const Navbar = () => {
                         <input type="checkbox" value="horror" /> Horror
                       </label>
                       <label>
-                        <input type="checkbox" value="love" /> Love
+                        <input type="checkbox" value="Romance" /> Love
                       </label>
                       <label>
-                        <input type="checkbox" value="drama" /> Drama
+                        <input type="checkbox" value="Drama" /> Drama
                       </label>
                       <label>
                         <input type="checkbox" value="sci-fi" /> Sci-fi
                       </label>
                     </div>
-                    <button className="apply-btn" onClick={applyFilters}>
+                    <button className="apply-btn" onClick={handleApplyFiltersClick}>
                       Apply
                     </button>
                   </div>
                 </div>
                 {/* Search Box */}
                 <div className="search-box">
-                  <input type="text" id="search-input" placeholder="Search for movies" />
+                  <input type="text" 
+                  id="search-input" 
+                  placeholder="Search for movies" 
+                  value={searchMovie}
+                  onChange={(e)=>setSearchMovie(e.target.value)}
+                  />
+                  <button onClick={handleSearchClick}>Search</button>
                   <i className="fa-solid fa-magnifying-glass" />
                 </div>
               </div>
@@ -136,11 +155,13 @@ const Navbar = () => {
           </ul>
           <div className="button">
             <li>
-            <button className="btn signin">Signin</button></li>
+              <button className="btn signin">Signin</button>
+            </li>
             <li>
-            <button className="btn signup">Signup</button></li>
+              <button className="btn signup">Signup</button>
+            </li>
           </div>
-       </div>
+        </div>
 
         {/* Menu Icon */}
         <div className="menu-icon" onClick={toggle}>
@@ -168,19 +189,6 @@ const Navbar = () => {
         </li>
       </ul>
 
-      <div class="backdrop" onclick="toggle()"></div>
-
-    <div class="content-list">
-      <div class="list-container">
-        <h3 class="list-header">You might also search for...</h3>
-          <ul class="item-list">
-              <li href="">Highly-rated 10 movies</li>
-              <li href="">Least-rated 10 movies</li>
-              <li href="">Recently released top 10 movies</li>
-              <li href="">Oldest movies</li>
-          </ul>
-      </div>
-    </div>
       <div className="backdrop" onClick={toggle} />
     </nav>
   );

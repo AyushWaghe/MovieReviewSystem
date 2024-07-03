@@ -4,16 +4,18 @@ import './LandingPage.css';
 import People from "../../assets/images/People.jpg";
 import SigninModal from "../../components/SignupSigninModal/SigninModal";
 import SignupModal from "../../components/SignupSigninModal/SignupModal";
+import MovieCard from "../../components/MovieCard/MovieCard";
 
 const LandingPage = () => {
   const [openModal, setOpenModal] = useState(null);
   const navigate=useNavigate();
 
   const handleGuestClick=()=>{
-     navigate('/movies');
+     navigate('/home');
   }
   return (
     <div className="MasterContainer">
+    
       <div className="HomeDiv">
         <div className="DarkOverlay">
           <div className="TopBar">
@@ -25,6 +27,7 @@ const LandingPage = () => {
             </div>
           </div>
           <div className="TagLines">
+          {/* <MovieCard /> */}
             <h3 style={{ margin: "0px" }}>Hello! Welcome to Movie Mania</h3>
             <h1 style={{ margin: "10px" }}>Your Personalized Movie Journey Begins Here!</h1>
           </div>
