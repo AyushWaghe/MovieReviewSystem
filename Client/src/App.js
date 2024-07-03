@@ -1,12 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
-import LandingPage from './Views/LandingPage/landingPage';
-import SigninModal from "./components/SignupSigninModal/SigninModal";
-import SignupModal from "./components/SignupSigninModal/SignupModal";
-// import MovieList from './components/MovieList';
-
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import LandingPage from '../src/Views/LandingPage/LandingPage';
+import SigninModal from '../src/components/SigninSignupModal/SigninModal';
+import SignupModal from '../src/components/SigninSignupModal/SignupModal';
+import HomePage from './Views/HomePage/HomePage';
 import './App.css';
-// import './Views/LandingPage/LandingPage.css';
 
 function App() {
   return (
@@ -16,7 +14,7 @@ function App() {
           <Route path="/" element={<LandingPage />} />
           <Route path="/signin" element={<SigninModal />} />
           <Route path="/signup" element={<SignupModal />} />
-          {/* <Route path="/movies" element={<MovieList />} /> */}
+          <Route path="/home" element={<HomePage />} />
         </Routes>
       </div>
     </Router>
