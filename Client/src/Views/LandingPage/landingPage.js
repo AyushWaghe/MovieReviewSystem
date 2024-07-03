@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './LandingPage.css';
 import People from "../../assets/images/People.jpg";
-import SigninModal from "../../components/SignupSigninModal/SigninModal";
-import SignupModal from "../../components/SignupSigninModal/SignupModal";
+import SigninModal from '../../components/SigninSignupModal/SigninModal';
+import SignupModal from '../../components/SigninSignupModal/SignupModal';
 
 const LandingPage = () => {
   const [openModal, setOpenModal] = useState(null);
   const navigate=useNavigate();
 
   const handleGuestClick=()=>{
-     navigate('/movies');
+     navigate('/home');
   }
   return (
     <div className="MasterContainer">
@@ -99,3 +99,4 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
+
