@@ -3,14 +3,14 @@ import './styles.css';
 import {useNavigate} from 'react-router-dom';
 
 function SigninModal({ setOpenModal }) {
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
 
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log('Sign in submitted:', email, password);
+    console.log('Sign in submitted:', username, password);
     setOpenModal(null);
     navigate('/movies');
   };
@@ -24,15 +24,15 @@ function SigninModal({ setOpenModal }) {
         <h2 className="text-center mb-4">Sign In</h2>
         <form onSubmit={handleSubmit}>
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="username">Username</label>
             <input
-              type="email"
+              type="username"
               className="form-control"
-              id="email"
-              placeholder="Enter your email"
+              id="username"
+              placeholder="Enter your username"
               required
-              value={email}
-              onChange={(event) => setEmail(event.target.value)}
+              value={username}
+              onChange={(event) => setUsername(event.target.value)}
             />
           </div>
           <div className="form-group">
