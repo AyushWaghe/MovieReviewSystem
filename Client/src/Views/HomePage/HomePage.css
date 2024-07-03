@@ -1,0 +1,31 @@
+/* client/src/components/HomePage.css */
+
+body {
+    margin: 0; /* Remove default margin from body */
+  }
+  
+  .home-page {
+    width: 100%;
+    min-height: 100vh;
+    position: relative;
+  }
+  
+  .background-image {
+    background-image: url("/Users/bellamkondagreeshma/Downloads/MovieReviewSystem-main copy/Client/src/assets/images/HomeImageDiv.jpg");
+    background-size: cover;
+    background-repeat: repeat-y; /* Repeat the background image vertically */
+    width: 100%;
+    min-height: 100vh;
+    position: relative; /* Ensure the container is positioned properly */
+  }
+  
+  .DarkOverlayH {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100%; /* Set the height to 100% of the parent element */
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.6) 0%, rgba(0, 0, 0, 0.4) 0%, rgba(0, 0, 0, 0.8) 0%);
+    z-index: 0; /* Ensure the overlay is behind the content */
+  }
+  
