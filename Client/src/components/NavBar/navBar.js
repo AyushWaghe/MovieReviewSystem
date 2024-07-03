@@ -1,8 +1,10 @@
-// client/src/components/Navbar.js
 import React from 'react';
 import './navBar.css';
+import { useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+
   const toggle = () => {
     // toggle 'how' class on mobile menu
     const mobileMenu = document.querySelector('.mobile-nav');
@@ -52,6 +54,14 @@ const Navbar = () => {
     // document.getElementById('results').innerText = `Searching with filters: ${JSON.stringify(selectedFilters)}`;
   };
 
+  const handleSignin = () => {
+    navigate('/signin');
+  };
+
+  const handleSignup = () => {
+    navigate('/signup');
+  };
+
   return (
     <nav className="navbar">
       {/* Navigation Content */}
@@ -59,7 +69,6 @@ const Navbar = () => {
         {/* Logo */}
         <div className="logo">
           <img src="logo.png" alt="logo" />
-          
         </div>
 
         {/* Desktop Navigation */}
@@ -80,18 +89,7 @@ const Navbar = () => {
                       <label>
                         <input type="checkbox" value="1" /> 1 star
                       </label>
-                      <label>
-                        <input type="checkbox" value="2" /> 2 stars
-                      </label>
-                      <label>
-                        <input type="checkbox" value="3" /> 3 stars
-                      </label>
-                      <label>
-                        <input type="checkbox" value="4" /> 4 stars
-                      </label>
-                      <label>
-                        <input type="checkbox" value="5" /> 5 stars
-                      </label>
+                      {/* Other rating options */}
                     </div>
                     {/* Genres */}
                     <div className="category">
@@ -99,21 +97,7 @@ const Navbar = () => {
                       <label>
                         <input type="checkbox" value="action" /> Action
                       </label>
-                      <label>
-                        <input type="checkbox" value="comedy" /> Comedy
-                      </label>
-                      <label>
-                        <input type="checkbox" value="horror" /> Horror
-                      </label>
-                      <label>
-                        <input type="checkbox" value="love" /> Love
-                      </label>
-                      <label>
-                        <input type="checkbox" value="drama" /> Drama
-                      </label>
-                      <label>
-                        <input type="checkbox" value="sci-fi" /> Sci-fi
-                      </label>
+                      {/* Other genre options */}
                     </div>
                     <button className="apply-btn" onClick={applyFilters}>
                       Apply
@@ -136,11 +120,17 @@ const Navbar = () => {
           </ul>
           <div className="button">
             <li>
-            <button className="btn signin">Signin</button></li>
+              <button className="btn signin" onClick={handleSignin}>
+                Signin
+              </button>
+            </li>
             <li>
-            <button className="btn signup">Signup</button></li>
+              <button className="btn signup" onClick={handleSignup}>
+                Signup
+              </button>
+            </li>
           </div>
-       </div>
+        </div>
 
         {/* Menu Icon */}
         <div className="menu-icon" onClick={toggle}>
@@ -160,28 +150,31 @@ const Navbar = () => {
         </li>
         <li>
           <i className="fa-solid fa-right-to-bracket" />
-          <button className="nav-btn">SignIn</button>
+          <button className="nav-btn" onClick={handleSignin}>
+            SignIn
+          </button>
         </li>
         <li>
           <i className="fa-solid fa-user-plus" />
-          <button className="nav-btn">SignUp</button>
+          <button className="nav-btn" onClick={handleSignup}>
+            SignUp
+          </button>
         </li>
       </ul>
 
-      <div class="backdrop" onclick="toggle()"></div>
-
-    <div class="content-list">
-      <div class="list-container">
-        <h3 class="list-header">You might also search for...</h3>
-          <ul class="item-list">
-              <li href="">Highly-rated 10 movies</li>
-              <li href="">Least-rated 10 movies</li>
-              <li href="">Recently released top 10 movies</li>
-              <li href="">Oldest movies</li>
-          </ul>
-      </div>
-    </div>
       <div className="backdrop" onClick={toggle} />
+
+      <div className="content-list">
+        <div className="list-container">
+          <h3 className="list-header">You might also search for...</h3>
+          <ul className="item-list">
+            <li href="">Highly-rated 10 movies</li>
+            <li href="">Least-rated 10 movies</li>
+            <li href="">Recently released top 10 movies</li>
+            <li href="">Oldest movies</li>
+          </ul>
+        </div>
+      </div>
     </nav>
   );
 };
