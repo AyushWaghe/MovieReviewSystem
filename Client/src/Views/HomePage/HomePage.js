@@ -46,6 +46,8 @@ const HomePage = () => {
   const setChunks = () => {
 
     if (moviesData) {
+      setChunkOne([]);
+      setChunkTwo([]);
       console.log(currentIndex);
       if (currentIndex + 3 > moviesData.length) {
         setChunkOne(moviesData.slice(currentIndex, moviesData.length));
