@@ -1,5 +1,6 @@
 // client/src/moviesData.js
 const moviesData = [
+
   {
     id: 1,
     title: "Jawan",
@@ -1106,3 +1107,4 @@ const moviesData = [
 ];
 
 export default moviesData;
+
