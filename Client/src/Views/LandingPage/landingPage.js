@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './LandingPage.css';
+import './landingPage.css';
 import People from "../../assets/images/People.jpg";
 import SigninModal from "../../components/SignupSigninModal/SigninModal";
 import SignupModal from "../../components/SignupSigninModal/SignupModal";
-import MovieCard from "../../components/MovieCard/MovieCard";
 
 const LandingPage = () => {
   const [openModal, setOpenModal] = useState(null);
