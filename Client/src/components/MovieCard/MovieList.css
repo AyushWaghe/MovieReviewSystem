@@ -1,4 +1,4 @@
-/* client/src/components/MovieList.css
+/*client/src/components/MovieList.css
 
 .movie-list {
     display:flex;
@@ -30,7 +30,7 @@
   }
   
   .movie-container {
-    padding-top: 11%;
+    margin-top:50%;
     display:grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1rem;
@@ -52,5 +52,5 @@
   
   .load-more:hover {
     background-color: #555;
-  }
-   */
+  }*/
+   
