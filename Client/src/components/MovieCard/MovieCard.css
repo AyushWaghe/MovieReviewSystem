@@ -1,17 +1,25 @@
 /* client/src/components/MovieCard.css */
 .movie-card {
-  background-color: #2c2c2c;
-  border-radius: 10px;
+  background-color: black;
+  border-color:gold;
+  border-radius: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  /* overflow: hidden; */
+  
   transition: transform 0.2s, box-shadow 0.2s;
-  width: 250px;
-  height: 300px;
+  align-items: center;
+  width:265px;
+  height:90%;
 }
 
+
+.movie-card:hover {
+  background-color: #900; 
+  border-color: white;
+}
 .movie-card img {
   width: 100%;
-  height: auto;
+  height:50%;
+  border-radius: 9px;
 }
 
 .movie-card .movie-details {
@@ -30,6 +38,6 @@
 }
 
 .movie-card:hover {
-  transform: translateY(10px);
+  transform: translateY(-10px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
 }
