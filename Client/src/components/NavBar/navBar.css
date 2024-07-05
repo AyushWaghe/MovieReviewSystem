@@ -191,7 +191,7 @@ body{
   color:#900;
 }
 
-@media screen and (max-width: 788px) {
+@media screen and (max-width: 1199px) {
   .content .desktop {
     display: none;
   }
@@ -253,11 +253,11 @@ body{
     border: 1px solid white;
     box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.15);
     cursor:pointer;
-    display:inline-block;
+    display: inline-block;
   }
   .dropdown-text{
     display:flex;
-    align-items:center;
+    align-items:left;
     justify-content:space-between;
     font-size:17px;
     font-weight:800;
@@ -300,6 +300,7 @@ body{
   .dropdown-content label input {
     margin-right: 5px;
     font-size:8px;
+    align-items: left;
   }
   
   .dropdown-content .apply-btn {
@@ -349,6 +350,24 @@ body{
   font-size:1rem;
   cursor:pointer;
 }
+.search-box button{
+  
+    background-color: red; /* Change the background color */
+    border: none; /* Remove border */
+    color: white; /* Change text color */
+    width:3.0cm;
+    height:0.8cm;
+    text-align: center; /* Center text */
+    text-decoration: none; /* Remove underline */
+    
+    font-size: 1rem; /* Increase font size */
+    cursor: pointer; /* Pointer cursor on hover */
+    border-radius: 10px; /* Rounded corners */
+  }
+
+
+
+
 .search-box input::placeholder{
   font-size:0.85rem;
   font-weight: 500;
@@ -358,43 +377,50 @@ body{
 
 /* styling 4 options shown on the right starts */
 .content-list {
-  display: flex;
+  position: fixed;
   justify-content: flex-end;
   margin-top: 10px;
 }
 .list-container {
-  margin-top: 100px;
-  margin-right: 25px;
-  width: 300px;
+  position: fixed;
+  top: 100px; /* adjust the top value as needed */
+  right: 0;
+  width: fit-content;
   background-color: transparent;
-  padding: 10px;
+  height: auto;
   border-radius: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
 }
-.list-header {
-  margin: 0;
-  padding: 10px;
-  color:white;
-  text-align: left;
-  border-radius: 5px 5px 0 0;
-}
+
 .item-list {
   list-style-type: none;
-  padding: 0;
-  border-radius: 50px;
+  margin-left: 0; /* remove the margin-left value */
 }
-.item-list li {
-  background-color: #900;
+.list-header {
+  
+  margin-top:50%;
   color:white;
-  margin: 5px 0;
+  margin-left: 10%;
+  text-align: left;
+  border-radius: 5px 5px 0 0;
+  width:10cm;
+  
+}
+
+.item-list li {
+  background-color: aliceblue;
+  color:#900;
+  margin-top:0.5cm;
   padding: 10px;
-  border:1px solid;
+  border:3px solid;
   border-radius: 20px;
   font-weight:500;
+  width:8cm;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
 .item-list li:hover{
-  background-color: rgb(38, 35, 35);
+  background-color: #900;
   border-color: red;
   color:white;
   cursor:default;
