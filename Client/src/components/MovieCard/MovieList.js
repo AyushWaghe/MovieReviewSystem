@@ -1,13 +1,11 @@
-// client/src/components/MovieList.js
 import React, { useState, useEffect } from 'react';
 import MovieCard from './MovieCard';
 import moviesData from '../../moviesData';
 import './MovieList.css';
-import Navbar from '../NavBar/navBar';
-
+import MightAlsoSearchFor from '../MightAlsoSearchFor/MightAlsoSearchFor';
 
 const MovieList = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(moviesData.slice(0, 4));
 
   useEffect(() => {
     // Use the real movie data
@@ -15,17 +13,15 @@ const MovieList = () => {
   }, []);
 
   return (
-    <div>
-      <Navbar />
-      <div className="movie-list">
-        <div className="HomeDiv">
-          <div className="DarkOverlayM">
-            <div className="movie-container">
-              {movies.map(movie => (
-                <MovieCard key={movie.id} movie={movie} />
-              ))}
-            </div>
+    <div className="movie-list">
+      <div className="HomeDiv">
+        <div className="DarkOverlayM">
+          <div className="movie-container">
+            {movies.map(movie => (
+              <MovieCard key={movie.id} movie={movie} />
+            ))}
           </div>
+          <MightAlsoSearchFor />
         </div>
       </div>
     </div>
