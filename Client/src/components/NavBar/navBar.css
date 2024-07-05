@@ -191,7 +191,7 @@ body{
   color:#900;
 }
 
-@media screen and (max-width: 1199px) {
+@media screen and (max-width: 788px) {
   .content .desktop {
     display: none;
   }

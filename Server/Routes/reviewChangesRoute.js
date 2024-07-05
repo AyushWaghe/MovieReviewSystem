@@ -4,7 +4,7 @@ const createReviewController =require('../Controllers/createReviewController');
 const deleteReviewController = require('../Controllers/deleteReviewController');
 const readReviewController = require('../Controllers/readReviewController'); 
 const updateReviewController =require('../Controllers/updateReviewController');
-const router=express.Router();
+const router = express.Router();
 
 router.post('/postReview', createReviewController);
 router.get('/fetchReview', readReviewController);
