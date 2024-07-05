@@ -1,6 +1,7 @@
 const { connectDB } = require('./dbConfig/db.js');
 const filterMoviesRoute = require('./Routes/filterMoviesRoute.js');
 const reviewChangesRoute = require('./Routes/reviewChangesRoute.js');
+const reviewRoutes = require('./Routes/reviews');
 
 const cors = require('cors');
 const bodyParser = require('body-parser');
