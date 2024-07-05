@@ -84,6 +84,10 @@ body {
   transition: transform 0.3s ease;
   cursor: pointer;
   flex: 1 1 calc(20% - 2%); /* Responsive basis with space between */
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  color: white;
 }
 
 .MovieCard img {
@@ -91,26 +95,23 @@ body {
   height: auto;
   object-fit: cover;
   border-radius: 8px;
+  flex-grow: 1;
 }
 
 .MovieCard .movie-title {
   font-size: 18px;
   padding: 10px 0;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
-.MovieCard .movie-hover-details {
-  display: none;
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  padding: 10px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+.MovieCard .movie-summary {
+  font-size: 14px;
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
-.MovieCard:hover .movie-hover-details {
-  display: block;
+.MovieCard:hover {
+  transform: scale(1.05);
 }
 
 .NextPrevButtonDiv {
