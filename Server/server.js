@@ -1,6 +1,7 @@
 
 const {connectDB}=require('./dbConfig/db.js');
 const filterMoviesRoute = require('./Routes/filterMoviesRoute.js');
+const reviewChangesRoute = require('./Routes/reviewChangesRoute.js');
 
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -24,6 +25,7 @@ app.get('/', (req, res) => {
 
 //Routes
 app.use('/searchMovies',filterMoviesRoute);
+app.use('/reviewChanges',reviewChangesRoute);
 
 
 
