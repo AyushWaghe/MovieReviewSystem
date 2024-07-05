@@ -15,7 +15,6 @@ const HomePage = () => {
   const [moviesData, setMoviesData] = useState([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [chunkOne, setChunkOne] = useState([]);
-  const [chunkTwo, setChunkTwo] = useState([]);
 
   const fetchData = async () => {
     try {
@@ -26,7 +25,6 @@ const HomePage = () => {
       console.log(e);
     }
   }
-
   const getfilterData = async (data) => {
     setFilterData(data);
     setCurrentIndex(0);
@@ -47,17 +45,13 @@ const HomePage = () => {
 
     if (moviesData) {
       setChunkOne([]);
-      setChunkTwo([]);
+      
       console.log(currentIndex);
       if (currentIndex + 3 > moviesData.length) {
         setChunkOne(moviesData.slice(currentIndex, moviesData.length));
       } else {
         setChunkOne(moviesData.slice(currentIndex, currentIndex + 4));
-        if (currentIndex + 7 > moviesData.length) {
-          setChunkTwo(moviesData.slice(currentIndex + 4, moviesData.length));
-        } else {
-          setChunkTwo(moviesData.slice(currentIndex + 4, currentIndex + 8));
-        }
+        
       }
     }
 
@@ -82,10 +76,9 @@ const HomePage = () => {
     }
   }
 
-
   console.log("Movies data homepage", moviesData);
   console.log("ChunkOne", chunkOne);
-  console.log("ChunkTwo", chunkTwo);
+ 
 
 
 
@@ -99,19 +92,14 @@ const HomePage = () => {
       <div className="HomeDiv">
         <div className="DarkOverlay">
           <div className="ContentContainer">
-            <div className="MovieCardContainers">
+            
 
               <div className="MovieCardContainer">
                 {chunkOne.map((mov) => (
                   <MovieCard movie={mov} /> //Please adjust the CSS in the card component folder
                 ))}
               </div>
-              <div className="MovieCardContainer">
-                {chunkTwo.map((mov) => (
-                  <MovieCard movie={mov} />   //Please adjust the CSS in the card component folder
-                ))}
-              </div>
-            </div>
+              
 
             <div className="YouMayAlsoSearchForContainer">
               <MightAlsoSearchFor filterData={getfilterData}/>  
@@ -119,20 +107,16 @@ const HomePage = () => {
           </div>
 
 
-          <div className="NextPrevButtonDiv">
-            <button onClick={handlePrev}>
-              Prev
-            </button>
-            <button onClick={handleNext}>
-              Next
-            </button>
-          </div>
+          <div class="NextPrevButtonDiv">
+  <button class="next-prev-button" id="button1" onClick={handlePrev}>Previous</button>
+  <button class="next-prev-button" id="button2" onClick={handleNext}>Next</button>
+</div>
 
         </div>
 
       </div>
     </div>
   );
-};
+                };
 
 export default HomePage;
