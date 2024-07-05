@@ -2,13 +2,14 @@
 import React from 'react';
 import './MovieCard.css';
 
-const MovieCard = ({ movie }) => {
+const MovieCard = ({ movie, onClick }) => {
+  const imageName=movie.poster;
   return (
-    <div className="movie-card">
-      <img src={movie.poster} alt={movie.title} />
+    <div className="movie-card" onClick={onClick}>
+      <img src={`./images/${imageName}`} alt={movie.title} className="movie-image" />
       <div className="movie-details">
         <h3>{movie.title}</h3>
-        <p>Duration: {movie.duration} min</p>
+        <p>Duration: {movie.duration} </p>
         <p>Average Stars: {movie.rating} ★</p>
         <p>Summary: {movie.summary}</p>
       </div>

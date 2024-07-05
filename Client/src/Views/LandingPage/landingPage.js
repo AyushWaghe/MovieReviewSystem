@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './LandingPage.css';
+import './landingPage.css';
 import People from "../../assets/images/People.jpg";
-import SigninModal from '../../components/SigninSignupModal/SigninModal';
-import SignupModal from '../../components/SigninSignupModal/SignupModal';
+import SigninModal from "../../components/SignupSigninModal/SigninModal";
+import SignupModal from "../../components/SignupSigninModal/SignupModal";
+import MovieCard from "../../components/MovieCard/MovieCard";
 
 const LandingPage = () => {
   const [openModal, setOpenModal] = useState(null);
@@ -14,6 +15,7 @@ const LandingPage = () => {
   }
   return (
     <div className="MasterContainer">
+    
       <div className="HomeDiv">
         <div className="DarkOverlay">
           <div className="TopBar">
@@ -25,6 +27,7 @@ const LandingPage = () => {
             </div>
           </div>
           <div className="TagLines">
+          {/* <MovieCard /> */}
             <h3 style={{ margin: "0px" }}>Hello! Welcome to Movie Mania</h3>
             <h1 style={{ margin: "10px" }}>Your Personalized Movie Journey Begins Here!</h1>
           </div>
@@ -99,4 +102,3 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
-

@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import LandingPage from '../src/Views/LandingPage/LandingPage';
+import LandingPage from '../src/Views/LandingPage/landingPage';
 import SigninModal from '../src/components/SigninSignupModal/SigninModal';
 import SignupModal from '../src/components/SigninSignupModal/SignupModal';
 import HomePage from './Views/HomePage/HomePage';

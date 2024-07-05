@@ -2,9 +2,10 @@ import React, { useState, useEffect } from 'react';
 import MovieCard from './MovieCard';
 import moviesData from '../../moviesData';
 import './MovieList.css';
+import MightAlsoSearchFor from '../MightAlsoSearchFor/MightAlsoSearchFor';
 
 const MovieList = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState(moviesData.slice(0, 4));
 
   useEffect(() => {
     // Use the real movie data
@@ -20,6 +21,7 @@ const MovieList = () => {
               <MovieCard key={movie.id} movie={movie} />
             ))}
           </div>
+          <MightAlsoSearchFor />
         </div>
       </div>
     </div>
