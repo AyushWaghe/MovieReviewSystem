@@ -83,7 +83,7 @@ const Navbar = ({ filterData }) => {
                 {/* Dropdown */}
                 <div className="dropdown">
                   <div id="drop-text" className="dropdown-text" onClick={toggleDropdown}>
-                    <span id="span">Filters</span>
+                    <span id="span">Filters </span>
                     <i id="icon" className="fa-solid fa-chevron-down" />
                   </div>
                   <div className="dropdown-content">
