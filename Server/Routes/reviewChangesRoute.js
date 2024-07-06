@@ -6,9 +6,9 @@ const readReviewController = require('../Controllers/readReviewController');
 const updateReviewController =require('../Controllers/updateReviewController');
 const router = express.Router();
 
-router.post('/postReview', createReviewController);
-router.get('/fetchReview', readReviewController);
-router.post('/updateReview', updateReviewController);
-router.delete('deleteReview', deleteReviewController);
+router.post('/postReview', createReviewController.createReview);
+router.get('/fetchReview', readReviewController.fetchReview);
+router.post('/updateReview', updateReviewController.updateReview);
+router.delete('deleteReview', deleteReviewController.deleteReview);
 
 module.exports = router;

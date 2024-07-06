@@ -1,6 +1,6 @@
-const Review = require('../Models/Review');
-const User = require('../Models/User');
-const Movie = require('../Models/Movie');
+const Review = require('../models/reviewSchema');
+const User = require('../models/userProfileSchema');
+const Movie = require('../models/movieSchema');
 
 const deleteReview = async (req, res) => {
   try {

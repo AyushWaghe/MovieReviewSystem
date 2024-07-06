@@ -3,7 +3,7 @@ const filterMoviesRoute = require('./Routes/filterMoviesRoute.js');
 const reviewChangesRoute = require('./Routes/reviewChangesRoute.js');
 const reviewRoutes = require('./Routes/reviews');
 const userRoutes = require('./Routes/userRoutes');
-const movieRoutes = require('.Routes/movieRoutes');
+const movieRoutes = require('./Routes/movieRoutes');
 
 const cors = require('cors');
 const bodyParser = require('body-parser');
