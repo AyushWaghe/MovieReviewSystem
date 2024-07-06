@@ -12,7 +12,7 @@ function SigninModal({ setOpenModal }) {
     event.preventDefault();
     console.log('Sign in submitted:', email, password);
     setOpenModal(null);
-    navigate('/movies');
+    navigate('/home');
   };
 
   return (

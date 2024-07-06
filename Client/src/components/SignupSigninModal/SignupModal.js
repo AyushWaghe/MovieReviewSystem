@@ -13,7 +13,7 @@ function SignupModal({ setOpenModal }) {
     event.preventDefault();
     console.log('Sign up submitted:', name, email, password, confirmPassword);
     setOpenModal(null);
-    navigate('/movies');
+    navigate('/home');
   };
 
   return (
