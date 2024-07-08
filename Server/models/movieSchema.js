@@ -11,7 +11,7 @@ const MovieSchema = new Schema({
     release_year: { type: Number, required: true },
     language: { type: String, required: true },
     genre: { type: String, required: true },
-    reviewids: { type: [Number]},
+    reviewids: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }], // Array of ObjectId
     cast: { type: [String], required: true },
 });
 

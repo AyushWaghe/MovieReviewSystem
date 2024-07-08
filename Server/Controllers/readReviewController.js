@@ -4,34 +4,30 @@ const Movie = require('../models/movieSchema');
 
 const fetchReview = async (req, res) => {
     const { userId, movieId } = req.params;
-
     try {
         if (userId) {
             // Fetch user profile and their reviews
-            const userProfile = await UserProfile.findOne({ uid: userId }).populate('MovieReviewIds');
+            const userProfile = await UserProfile.findOne({ uid: userId }).populate({
+                path: 'movieReviewIds.reviewId',
+                populate: {
+                    path: 'movieReviewId',
+                    model: 'Movie'
+                }
+            });
 
             if (!userProfile) {
                 return res.status(404).json({ message: 'User profile not found' });
             }
-
-            const reviews = await Review.find({ _id: { $in: userProfile.MovieReviewIds } }).populate('movieReviewId');
-
-            return res.status(200).json({
-                userProfile,
-                reviews
-            });
+            return res.status(200).json(userProfile);
         }
-
         if (movieId) {
             // Fetch movie details and reviews for the movie
-            const movie = await Movie.findById(movieId).populate('reviewids');
+            const movie = await Movie.findOne({ id: movieId }).populate('reviewids');
 
             if (!movie) {
                 return res.status(404).json({ message: 'Movie not found' });
             }
-
             const reviews = await Review.find({ movieReviewId: movieId });
-
             return res.status(200).json({
                 movie,
                 reviews
