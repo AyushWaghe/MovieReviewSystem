@@ -3,34 +3,64 @@ const Movie = require('../models/movieSchema');
 const UserProfile = require('../models/userProfileSchema');
 
 const updateReview = async (req, res) => {
-    const { reviewId, review, rating } = req.body;
-    const { userId } = req.params;
-  
-    try {
-      // Fetch the user profile
-      const userProfile = await UserProfile.findOne({ uid: userId });
-  
-      // Find the review to be updated
-      const reviewToUpdate = await Review.findById(reviewId);
-  
-      // Update the review
-      reviewToUpdate.review = review;
-      reviewToUpdate.rating = rating;
-      await reviewToUpdate.save();
-  
-      // Update the review in the user profile
-      const updatedUserProfile = await UserProfile.findOneAndUpdate(
-        { uid: userId },
-        { $set: { 'MovieReviewIds.$[elem].review': review, 'MovieReviewIds.$[elem].rating': rating } },
-        { arrayFilters: [{ 'elem._id': reviewId }], new: true }
-      );
-  
-      res.status(200).json({ message: 'Review updated successfully', review: updatedUserProfile.MovieReviewIds.find(r => r._id.toString() === reviewId) });
-    } catch (error) {
-      console.error(error);
-      res.status(500).json({ message: 'Failed to update review', error: error.message });
+  try {
+    const { userId, movieId, reviewId, reviewContent, rating } = req.body; // Change review to reviewContent
+
+    console.log(userId, movieId, reviewContent, rating);
+
+    const updatedReview = await Review.findOneAndUpdate(  //Fethc the review and update it using the revieID thing 
+      { reviewId: reviewId },
+      {
+        $set: {
+          'review': reviewContent,
+          'rating': rating
+        }
+      },
+      {
+        new: true
+      }
+    );
+
+    //update movie ratings--------------------------------RE CALCUALTING THE REVIEW IDS
+    const movie=await Movie.find({id: movieId});  //Fetch the review IDs from movie 
+    const reviewIds=movie[0].reviewids;
+    
+    const reviewRatings=await Review.find({reviewId:{$in:reviewIds}});  //Find all the reviews whith the fteched review ids 
+
+    if (reviewRatings.length === 0) {
+      return res.status(404).json({ message: 'No reviews found for this movie' });
     }
-  };
-  
-  module.exports = { updateReview };
-  
+
+    // Calculate the average rating
+    const totalRating = reviewRatings.reduce((sum, review) => sum + review.rating, 0);
+    const averageRating = totalRating / reviewRatings.length;
+
+    // console.log("Averagte rating is",averageRating)
+
+    const updatedMovieRating =await Movie.findOneAndUpdate(  //Update the average rating again 
+      {id:movieId},   
+      {
+        $set:{
+          'stars':averageRating
+        }
+      },
+      {
+        new:true,
+      }
+      )
+
+    if (updatedReview  && updatedMovieRating) {
+      return res.status(200).json({ message: 'updated successfully' });
+    } else {
+      return res.status(404).json({ message: 'Something not found' });
+    }
+
+    
+
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+};
+
+module.exports = { updateReview };

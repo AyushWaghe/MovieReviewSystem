@@ -15,5 +15,5 @@ const MovieSchema = new Schema({
     cast: { type: [String], required: true },
 });
 
-const Movies=mongoose.model('Movies',MovieSchema);
-module.exports =Movies;
+const Movie=mongoose.model('Movie',MovieSchema);
+module.exports =Movie;
