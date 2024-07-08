@@ -9,6 +9,6 @@ const router = express.Router();
 router.post('/postReview', createReviewController.createReview);
 router.get('/fetchReview', readReviewController.fetchReview);
 router.post('/updateReview', updateReviewController.updateReview);
-router.delete('deleteReview', deleteReviewController.deleteReview);
+router.delete('/deleteReview', deleteReviewController.deleteReview);
 
 module.exports = router;
