@@ -4,6 +4,7 @@ import LandingPage from './Views/LandingPage/landingPage';
 import SigninModal from "./components/SignupSigninModal/SigninModal";
 import SignupModal from "./components/SignupSigninModal/SignupModal";
 import HomePage from './Views/HomePage/HomePage';
+import MoviePage from './Views/MoviePagw/MoviePage';
 
 import './App.css';
 // import './Views/LandingPage/LandingPage.css';
@@ -17,6 +18,7 @@ function App() {
           <Route path="/signin" element={<SigninModal />} />
           <Route path="/signup" element={<SignupModal />} />
           <Route path="/home" element={<HomePage />} />
+          <Route path="/moviepage" element={<MoviePage />} />
         </Routes>
       </div>
     </Router>
