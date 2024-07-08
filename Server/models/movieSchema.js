@@ -11,9 +11,9 @@ const MovieSchema = new Schema({
     release_year: { type: Number, required: true },
     language: { type: String, required: true },
     genre: { type: String, required: true },
-    reviewids: { type: [Number]},
+    reviewids: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Review' }], // Change to array of ObjectId
     cast: { type: [String], required: true },
 });
 
-const Movie=mongoose.model('Movie',MovieSchema);
-module.exports =Movie;
+const Movie = mongoose.model('Movie', MovieSchema);
+module.exports = Movie;
