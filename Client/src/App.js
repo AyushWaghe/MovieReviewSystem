@@ -4,7 +4,7 @@ import LandingPage from './Views/LandingPage/landingPage';
 import SigninModal from "./components/SignupSigninModal/SigninModal";
 import SignupModal from "./components/SignupSigninModal/SignupModal";
 import HomePage from './Views/HomePage/HomePage';
-import MoviePage from './Views/MoviePagw/MoviePage';
+import MoviePage from './Views/MoviePage/MoviePage';
 
 import './App.css';
 // import './Views/LandingPage/LandingPage.css';
