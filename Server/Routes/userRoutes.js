@@ -5,4 +5,3 @@ const readReviewController = require('../Controllers/readReviewController');
 router.get('/profile/:userId', readReviewController.fetchReview);
 
 module.exports = router;
-

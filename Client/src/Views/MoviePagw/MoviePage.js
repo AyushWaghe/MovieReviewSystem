@@ -1,6 +1,5 @@
 import React from 'react'
 import "./MoviePage.css"
-// import  jawan from "./images/jawan.jpg";
 import Navbar from '../../components/NavBar/navBar'
 
 

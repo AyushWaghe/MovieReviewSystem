@@ -18,6 +18,10 @@ const fetchReview = async (req, res) => {
             if (!userProfile) {
                 return res.status(404).json({ message: 'User profile not found' });
             }
+<<<<<<< HEAD
+=======
+
+>>>>>>> e56c1622826c0f0c70047e43e129fe6d9e18dbb0
             return res.status(200).json(userProfile);
         }
         if (movieId) {
