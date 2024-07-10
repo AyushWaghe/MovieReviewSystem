@@ -1,6 +1,7 @@
 import React from 'react';
 import './UserProfile.css';
 import Navbar from '../../components/NavBar/navBar';
+import UserReviewCard from '../../components/reviewCard/userReviewCard';
 
 const UserProfile = () => {
   return (
@@ -21,7 +22,15 @@ const UserProfile = () => {
       </div>
       <div className="profile-activity">
         <h1>Your Activity</h1>
+        <div>
+                <UserReviewCard
+                name="John Doe"
+                reviewText="The movie was fantastic! The storyline was gripping and the performances were outstanding."
+                ratingValue={4}
+                />
+        </div>
       </div>
+
     </div>
     </div>
   );
