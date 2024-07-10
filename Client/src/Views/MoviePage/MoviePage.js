@@ -63,12 +63,17 @@ const MoviePage = () => {
                 <h1>About movie</h1>    
             </div>
 
-            <div>
+            <div class="displayGrid">
+                <div>
                 <ReviewCard
                 name="John Doe"
                 reviewText="The movie was fantastic! The storyline was gripping and the performances were outstanding."
                 ratingValue={4}
-            />
+                />
+                </div>
+                <div>
+                <ReviewCard/>
+                </div>
             </div>
         </div>
     )

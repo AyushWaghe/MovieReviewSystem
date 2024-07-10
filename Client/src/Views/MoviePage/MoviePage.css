@@ -116,3 +116,9 @@
   .rating {
     color: white;
   }
+
+  .displayGrid{
+    display: grid;
+    grid-template-columns: 420px 70px;
+    grid-template-rows: 70px 70px;
+  }
