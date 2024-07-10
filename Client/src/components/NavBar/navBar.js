@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import './navBar.css';
-import axios from 'axios';
+
+import SigninModal from "../../components/SignupSigninModal/SigninModal";
+import SignupModal from "../../components/SignupSigninModal/SignupModal";
 
 const Navbar = ({ filterData }) => {
+  const [openModal, setOpenModal] = useState(null);
 
   const [searchMovie,setSearchMovie]=useState("");
 
@@ -141,8 +144,8 @@ const Navbar = ({ filterData }) => {
                   value={searchMovie}
                   onChange={(e)=>setSearchMovie(e.target.value)}
                   />
-                  <button onClick={handleSearchClick}><i className="fa-solid fa-magnifying-glass" /></button>
-                  
+                  <button onClick={handleSearchClick}>Search</button>
+                  <i className="fa-solid fa-magnifying-glass" />
                 </div>
               </div>
             </li>
@@ -153,13 +156,9 @@ const Navbar = ({ filterData }) => {
               <button className="nav-btn">Movies</button>
             </li>
           </ul>
-          <div className="button">
-            <li>
-              <button className="btn signin">Signin</button>
-            </li>
-            <li>
-              <button className="btn signup">Signup</button>
-            </li>
+          <div className="ButtonDiv">
+            <button className="nav-btn" onClick={() => setOpenModal('signup')}>Sign up</button>
+            <button className="nav-btn" onClick={() => setOpenModal('signin')}>Sign in</button>
           </div>
         </div>
 
@@ -167,6 +166,8 @@ const Navbar = ({ filterData }) => {
         <div className="menu-icon" onClick={toggle}>
           <i className="fa-solid fa-bars" />
         </div>
+        {openModal === 'signin' && <SigninModal setOpenModal={setOpenModal} />}
+      {openModal === 'signup' && <SignupModal setOpenModal={setOpenModal} />}
       </div>
 
       {/* Mobile Navigation */}
