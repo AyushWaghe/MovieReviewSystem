@@ -47,10 +47,10 @@ const HomePage = () => {
       setChunkOne([]);
       
       console.log(currentIndex);
-      if (currentIndex + 3 > moviesData.length) {
+      if (currentIndex + 2 > moviesData.length) {
         setChunkOne(moviesData.slice(currentIndex, moviesData.length));
       } else {
-        setChunkOne(moviesData.slice(currentIndex, currentIndex + 4));
+        setChunkOne(moviesData.slice(currentIndex, currentIndex + 3));
         
       }
     }
@@ -60,7 +60,7 @@ const HomePage = () => {
   const handleNext = () => {
     // setChunks();
     if (currentIndex < moviesData.length) {
-      setCurrentIndex(currentIndex + 8);
+      setCurrentIndex(currentIndex + 3);
     }
     if (currentIndex > moviesData.length) {
       setCurrentIndex(currentIndex);
@@ -69,7 +69,7 @@ const HomePage = () => {
 
   const handlePrev = () => {
     if (currentIndex >= 0) {
-      setCurrentIndex(currentIndex - 8);
+      setCurrentIndex(currentIndex - 3);
     }
     if (currentIndex < 0) {
       setCurrentIndex(currentIndex);

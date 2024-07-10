@@ -48,7 +48,7 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <div className="ComponentContainer">
+      <div className="ComponentContainer2">
 
         <div className="ComponentImage">
           <div>
@@ -63,7 +63,7 @@ const LandingPage = () => {
 
       </div>
 
-      <div className="ComponentContainer">
+      <div className="ComponentContainer2">
         <div className="ComponentTaglineContent">
           <h3 style={{ margin: "0px" }}>Discover Your Next Favorite: </h3>
           <p>Discover curated movie suggestions tailored uniquely to your taste with our Personalized Movie Recommendations service.</p>
@@ -75,7 +75,7 @@ const LandingPage = () => {
         </div>
       </div>
 
-      <div className="ComponentContainer">
+      <div className="ComponentContainer2">
 
         <div className="ComponentImage">
           <div>

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles.css';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { signup } from '../../features/userSlice';
 
 function SignupModal({ setOpenModal }) {
   const [name, setName] = useState('');
@@ -9,11 +12,44 @@ function SignupModal({ setOpenModal }) {
   const [confirmPassword, setConfirmPassword] = useState('');
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
+  const dispatch = useDispatch();
+
+  function generateId(N) {
+    // Generate a random number with N digits
+    const randomComponent = Math.floor(Math.random() * (Math.pow(10, N) - Math.pow(10, N - 1))) + Math.pow(10, N - 1);
+
+    return randomComponent;
+  }
+
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Sign up submitted:', name, email, password, confirmPassword);
-    setOpenModal(null);
-    navigate('/home');
+
+    if(confirmPassword==password){
+      const uid = generateId(7);
+
+    dispatch(signup({
+      uid: uid,
+    }));
+
+    try {
+      const response = await axios.post('http://localhost:3001/authenticate/signup', {
+        username: name,
+        password: password,
+        uid: uid,
+      });
+      if (response.data.success) {
+        console.log('Sign up submitted:', name, email, password, confirmPassword);
+        setOpenModal(null);
+        navigate('/home');
+      } else {
+        console.log("none"); // Login failed
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    }else{
+      alert("Confirm password and password dont match! please check");
+    }
   };
 
   return (

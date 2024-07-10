@@ -1,18 +1,44 @@
 import React, { useState } from 'react';
 import './styles.css';
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import { useDispatch } from 'react-redux';
+import { login } from '../../features/userSlice';
 
 function SigninModal({ setOpenModal }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log('Sign in submitted:', email, password);
-    setOpenModal(null);
-    navigate('/home');
+
+    try {
+      console.log("Trying to login");
+      const response = await axios.post('http://localhost:3001/authenticate/signin', {
+        username: email,
+        password: password,
+      });
+      if (response.data.success) {
+        // console.log(response.data);
+        console.log('Sign in submitted:', email, password);
+        setOpenModal(null);
+
+        const uid=response.data.uid;
+
+        dispatch(login({
+          uid: uid,
+        }));
+           navigate('/home');
+      } else {
+        alert("Invalid Credentials")
+      }
+    } catch (err) {
+      console.log(err);
+    }
+
+
   };
 
   return (
@@ -26,7 +52,7 @@ function SigninModal({ setOpenModal }) {
           <div className="form-group">
             <label htmlFor="email">Email</label>
             <input
-              type="email"
+              type="text"
               className="form-control"
               id="email"
               placeholder="Enter your email"

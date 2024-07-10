@@ -1,30 +1,84 @@
-const Review = require('../models/reviewSchema');
-const User = require('../models/userProfileSchema');
-const Movie = require('../models/movieSchema');
+const UserProfile = require("../models/userProfileSchema");
+const Movie = require("../models/movieSchema");
+const Review = require("../models/reviewSchema");
 
-const deleteReview = async (req, res) => {
-  try {
-    const { reviewId, userId } = req.body;
+const deleteReviewController = async (req, res) => {
+    try {
+        console.log("asdasdxxxxxxxx")
+        const userId = req.query.userId;  //Change this to params.
+        const movieId = req.query.movieId; //Change this to params.
+        const reviewId = req.query.reviewId; //Change this to params.
+        console.log(userId, movieId);
+        // console.log(req.query);
 
-    // Delete the review from the Review model
-    await Review.findByIdAndDelete(reviewId);
+        const userProfile = await UserProfile.findOne({ uid: userId });
 
-    // Remove the review reference from the User model
-    const user = await User.findById(userId);
-    user.reviews = user.reviews.filter(review => review.toString() !== reviewId);
-    await user.save();
+        const reviewIdMovieIdIndex = userProfile.movieReviewIds.findIndex(mr => mr.reviewId == reviewId);
 
-    // Remove the review reference from the Movie model
-    const movie = await Movie.findOne({ 'reviews.id': reviewId });
-    if (movie) {
-      movie.reviews = movie.reviews.filter(review => review.id.toString() !== reviewId);
-      await movie.save();
+        //Delete that map
+        userProfile.movieReviewIds.splice(reviewIdMovieIdIndex, 1);
+
+        await userProfile.save();
+
+        //Now delete from the review database
+        const reviewToBeDeleted = await Review.deleteOne({ reviewId: reviewId });
+
+        //Now delete from movie database
+        const movieReviewToBeDeleted = await Movie.findOne({ id: movieId });
+
+        const index = movieReviewToBeDeleted.reviewids.findIndex(mmr => mmr == reviewId);
+        // console.log(index);
+        movieReviewToBeDeleted.reviewids.splice(index, 1);
+        await movieReviewToBeDeleted.save();
+
+        //update movie ratings-----------------------------------------------------------------------------RE CALCUALTING THE REVIEW IDS
+        const movie = await Movie.find({ id: movieId });  //Fetch the review IDs from movie 
+        const reviewIds = movie[0].reviewids;
+
+        const reviewRatings = await Review.find({ reviewId: { $in: reviewIds } });  //Find all the reviews whith the fteched review ids 
+
+        if (reviewRatings.length === 0) {
+            const updatedMovieRating = await Movie.findOneAndUpdate(  //Update the average rating again 
+                { id: movieId },
+                {
+                    $set: {
+                        'stars': 3
+                    }
+                },
+                {
+                    new: true,
+                }
+            )
+            return res.status(200).json({ success:true,message: 'No reviews found for this movie hence value set to default 3' });
+        }
+
+        // Calculate the average rating
+        const totalRating = reviewRatings.reduce((sum, review) => sum + review.rating, 0);
+        const averageRating = totalRating / reviewRatings.length;
+
+        // console.log("Averagte rating is",averageRating)
+
+        const updatedMovieRating = await Movie.findOneAndUpdate(  //Update the average rating again 
+            { id: movieId },
+            {
+                $set: {
+                    'stars': averageRating
+                }
+            },
+            {
+                new: true,
+            }
+        )
+
+
+
+       
+       return res.status(200).json({sucess:true, message: 'Done' });
+        
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({ message: 'Server error' });
     }
+}
 
-    res.status(200).json({ message: 'Review deleted successfully' });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
-
-module.exports = { deleteReview };
+module.exports = deleteReviewController;

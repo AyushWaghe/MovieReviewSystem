@@ -1,9 +1,8 @@
 const { connectDB } = require('./dbConfig/db.js');
 const filterMoviesRoute = require('./Routes/filterMoviesRoute.js');
 const reviewChangesRoute = require('./Routes/reviewChangesRoute.js');
-const reviewRoutes = require('./Routes/reviews');
-const userRoutes = require('./Routes/userRoutes');
-const movieRoutes = require('./Routes/movieRoutes');
+const fetchDataRoute = require('./Routes/fetchDataRoute.js');
+const authenticationRoute=require('./Routes/authenticationRoute.js');
 
 const cors = require('cors');
 const bodyParser = require('body-parser');
@@ -25,8 +24,9 @@ app.get('/', (req, res) => {
 
 app.use('/searchMovies', filterMoviesRoute);
 app.use('/reviewChanges', reviewChangesRoute);
-app.use('/users', userRoutes);
-app.use('/movies', movieRoutes);
+app.use('/fetchData', fetchDataRoute);
+app.use('/authenticate',authenticationRoute);
+
 
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);

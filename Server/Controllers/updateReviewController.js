@@ -1,6 +1,5 @@
 const Review = require('../models/reviewSchema');
 const Movie = require('../models/movieSchema');
-const UserProfile = require('../models/userProfileSchema');
 
 const updateReview = async (req, res) => {
   try {
@@ -49,13 +48,8 @@ const updateReview = async (req, res) => {
       }
       )
 
-    if (updatedReview  && updatedMovieRating) {
-      return res.status(200).json({ message: 'updated successfully' });
-    } else {
-      return res.status(404).json({ message: 'Something not found' });
-    }
 
-    
+      return res.status(200).json({success:true, message: 'updated successfully' });
 
   } catch (error) {
     console.error(error);

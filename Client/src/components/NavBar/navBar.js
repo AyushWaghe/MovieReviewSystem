@@ -1,20 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import './navBar.css';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux'; // Added import for useSelector
 
 const Navbar = ({ filterData }) => {
+  let flag = 1;
+  let userId;
+  const user = useSelector(state => state.user); // Assuming 'state.user' contains the user object
 
-  const [searchMovie,setSearchMovie]=useState("");
+  if (user && user.user && user.user.uid) {
+    userId = user.user.uid;
+    console.log("userid", userId);
+  } else {
+    flag = 0;
+  }
+
+  const navigate = useNavigate();
+
+  const [searchMovie, setSearchMovie] = useState("");
 
   const selectedFilters = {
     ratings: [],
     genres: [],
-    movieTitle:"",
+    movieTitle: "",
     superId: ""
   };
 
   const toggle = () => {
-    // toggle 'how' class on mobile menu
+    // toggle 'show' class on mobile menu
     const mobileMenu = document.querySelector('.mobile-nav');
     mobileMenu.classList.toggle('show');
   };
@@ -33,7 +47,6 @@ const Navbar = ({ filterData }) => {
   };
 
   const handleApplyFiltersClick = async () => {
-
     document.querySelectorAll('.dropdown-content input[type="checkbox"]:checked').forEach((checkbox) => {
       const category = checkbox.closest('.category').querySelector('span').innerText.toLowerCase();
       if (category === 'rating') {
@@ -44,23 +57,21 @@ const Navbar = ({ filterData }) => {
     });
 
     // Perform search with the selected filters
-    // console.log('Selected Filters:', selectedFilters);
+    filterData(selectedFilters);
 
     // Close the dropdown after applying filters
     const dropdownContent = document.querySelector('.dropdown-content');
     const icon = document.getElementById('icon');
     dropdownContent.style.display = 'none';
     icon.style.transform = 'rotate(0deg)';
-
-    filterData(selectedFilters);
   };
 
-  const handleSearchClick=()=>{
-    selectedFilters.movieTitle=searchMovie;
-    selectedFilters.genres=[];
-    selectedFilters.ratings=[];
+  const handleSearchClick = () => {
+    selectedFilters.movieTitle = searchMovie;
+    selectedFilters.genres = [];
+    selectedFilters.ratings = [];
     filterData(selectedFilters);
-  }
+  };
 
   // useEffect(() => {
   //   handleApplyFiltersClick(); // This will execute once when component mounts
@@ -135,11 +146,11 @@ const Navbar = ({ filterData }) => {
                 </div>
                 {/* Search Box */}
                 <div className="search-box">
-                  <input type="text" 
-                  id="search-input" 
-                  placeholder="Search for movies" 
-                  value={searchMovie}
-                  onChange={(e)=>setSearchMovie(e.target.value)}
+                  <input type="text"
+                    id="search-input"
+                    placeholder="Search for movies"
+                    value={searchMovie}
+                    onChange={(e) => setSearchMovie(e.target.value)}
                   />
                   <button onClick={handleSearchClick}>Search</button>
                   <i className="fa-solid fa-magnifying-glass" />
@@ -147,20 +158,22 @@ const Navbar = ({ filterData }) => {
               </div>
             </li>
             <li>
-              <button className="nav-btn">Home</button>
+              <button onClick={() => navigate("/home")} className="nav-btn">Home</button>
             </li>
             <li>
-              <button className="nav-btn">Movies</button>
+              <button onClick={() => navigate("/userprofile")} className="nav-btn" >Profile</button>
             </li>
           </ul>
-          <div className="button">
-            <li>
-              <button className="btn signin">Signin</button>
-            </li>
-            <li>
-              <button className="btn signup">Signup</button>
-            </li>
-          </div>
+          {flag === 0 && (
+            <div className="button">
+              <li>
+                <button onClick={() => navigate("/")} className="btn signin">Signin</button>
+              </li>
+              <li>
+                <button onClick={() => navigate("/")} className="btn signup">Signup</button>
+              </li>
+            </div>
+          )}
         </div>
 
         {/* Menu Icon */}
@@ -173,20 +186,24 @@ const Navbar = ({ filterData }) => {
       <ul className="mobile-nav">
         <li className="active">
           <i className="fa-solid fa-house" />
-          <button className="nav-btn">Home</button>
+          <button className="nav-btn" onClick={() => navigate("/home")}>Home</button>
         </li>
         <li>
           <i className="fa-solid fa-film" />
-          <button className="nav-btn">Movies</button>
+          <button className="nav-btn" onClick={() => navigate("/moviepage")}>Movies</button>
         </li>
-        <li>
-          <i className="fa-solid fa-right-to-bracket" />
-          <button className="nav-btn">SignIn</button>
-        </li>
-        <li>
-          <i className="fa-solid fa-user-plus" />
-          <button className="nav-btn">SignUp</button>
-        </li>
+        {flag === 0 && (
+          <>
+            <li>
+              <i className="fa-solid fa-right-to-bracket" />
+              <button className="nav-btn" onClick={() => navigate("/signin")}>SignIn</button>
+            </li>
+            <li>
+              <i className="fa-solid fa-user-plus" />
+              <button className="nav-btn" onClick={() => navigate("/signup")}>SignUp</button>
+            </li>
+          </>
+        )}
       </ul>
 
       <div className="backdrop" onClick={toggle} />
