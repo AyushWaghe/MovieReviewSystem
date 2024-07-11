@@ -13,13 +13,19 @@ const port = 3001;
 
 connectDB();
 
-app.use(cors());
+app.use(cors({
+    origin : [  "*", 
+                "https://moviemania-server-rho.vercel.app/",
+                "https://moviemania-client.vercel.app/"
+    ],
+    credentials : true
+}));
 app.use(bodyParser.json());
 app.use(express.json()); // Parse JSON bodies
 
-app.get('/', (req, res) => {
-    res.send('Hello, World!');
-});
+app.get("/", async (req, res) => {
+    return res.status(200).json({ message: "MovieReviewSystem server is up & running!"})
+})
 
 
 app.use('/searchMovies', filterMoviesRoute);
@@ -31,3 +37,5 @@ app.use('/authenticate',authenticationRoute);
 app.listen(port, () => {
     console.log(`Server is running on http://localhost:${port}`);
 });
+
+module.exports = app;

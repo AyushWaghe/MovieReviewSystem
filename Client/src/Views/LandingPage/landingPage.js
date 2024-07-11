@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './LandingPage.css';
+import './landingPage.css';
 import People from "../../assets/images/People.jpg";
 import SigninModal from "../../components/SignupSigninModal/SigninModal";
 import SignupModal from "../../components/SignupSigninModal/SignupModal";
@@ -19,7 +19,7 @@ const LandingPage = () => {
         <div className="DarkOverlay">
           <div className="TopBar">
             <div className="LOGO">
-              NAME
+            <h2>MovieMania</h2>
             </div>
             <div className="GuestButtonDiv">
               <button className="GuestButton" onClick={handleGuestClick}>Guest</button>

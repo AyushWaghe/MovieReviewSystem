@@ -33,7 +33,7 @@ const PopupReviewCardProfilePage = ({ onClose,userId,movieId,reviewId,fetchData 
         }
 
         try{
-            const response = await axios.put('http://localhost:3001/reviewChanges/updateReview', reviewData);
+            const response = await axios.put(`${process.env.SERVER_URL}/reviewChanges/updateReview`, reviewData);
             if(response.data.success){
                 onClose();
                 alert("Review updated successfully")

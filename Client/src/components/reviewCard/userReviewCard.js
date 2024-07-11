@@ -25,7 +25,7 @@ const UserReviewCard = ({ reviewData, userId, fetchData }) => {
         e.preventDefault();
         console.log("deleting")
         try {
-            const response = await axios.delete('http://localhost:3001/reviewChanges/deleteReview', {
+            const response = await axios.delete(`${process.env.SERVER_URL}/reviewChanges/deleteReview`, {
                 params: {
                     userId: userId,
                     movieId: reviewData.movieId,

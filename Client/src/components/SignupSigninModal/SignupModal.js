@@ -32,7 +32,7 @@ function SignupModal({ setOpenModal }) {
     }));
 
     try {
-      const response = await axios.post('http://localhost:3001/authenticate/signup', {
+      const response = await axios.post(`${process.env.SERVER_URL}/authenticate/signup`, {
         username: name,
         password: password,
         uid: uid,

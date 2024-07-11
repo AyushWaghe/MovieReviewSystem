@@ -35,7 +35,7 @@ const MoviePage = () => {
 
     const fetchMovieData = async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/fetchData/fetchMovieData?movieId=${movieid}`);
+            const response = await axios.get(`${process.env.SERVER_URL}/fetchData/fetchMovieData?movieId=${movieid}`);
             setMovieData(response.data.movieData);
             setReviewsData(response.data.reviewsData);
         } catch (error) {

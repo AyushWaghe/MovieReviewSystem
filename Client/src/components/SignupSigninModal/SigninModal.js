@@ -16,7 +16,7 @@ function SigninModal({ setOpenModal }) {
 
     try {
       console.log("Trying to login");
-      const response = await axios.post('http://localhost:3001/authenticate/signin', {
+      const response = await axios.post(`${process.env.SERVER_URL}/authenticate/signin`, {
         username: email,
         password: password,
       });

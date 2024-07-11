@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, {  useState } from 'react';
 import './navBar.css';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
@@ -153,8 +153,10 @@ const Navbar = ({ filterData }) => {
                     value={searchMovie}
                     onChange={(e) => setSearchMovie(e.target.value)}
                   />
-                  <button onClick={handleSearchClick}>Search</button>
-                  <i className="fa-solid fa-magnifying-glass" />
+                  <button onClick={handleSearchClick}>
+                      <i className="fa-solid fa-magnifying-glass" />
+                  </button>
+                  
                 </div>
               </div>
             </li>

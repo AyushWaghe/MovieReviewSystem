@@ -30,7 +30,7 @@ const PopupReviewCard = ({ onClose,userId,movieId }) => {
         }
 
         try{
-            const response=await axios.post('http://localhost:3001/reviewChanges/postReview/', reviewData);
+            const response=await axios.post(`${process.env.SERVER_URL}/reviewChanges/postReview/`, reviewData);
             if(response.data.success){
                 onClose();
                 alert("Review posted successfully")

@@ -19,7 +19,7 @@ const HomePage = () => {
   const fetchData = async () => {
     try {
       console.log("FilterDataInsideFetchFunction", filterData);
-      const response = await axios.get(`http://localhost:3001/searchMovies/filterMovies?genres=${filterData.genres}&ratings=${filterData.ratings}&movieTitle=${filterData.movieTitle}&superId=${filterData.superId}`);
+      const response = await axios.get(`${process.env.SERVER_URL}/searchMovies/filterMovies?genres=${filterData.genres}&ratings=${filterData.ratings}&movieTitle=${filterData.movieTitle}&superId=${filterData.superId}`);
       setMoviesData(response.data.movies);
     } catch (e) {
       console.log(e);

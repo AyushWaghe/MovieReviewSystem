@@ -25,7 +25,7 @@ const UserProfile = () => {
 
     const fetchData = async () => {
         try {
-            const response = await axios.get(`http://localhost:3001/fetchData/fetchReviewData?userId=${userId}`);
+            const response = await axios.get(`${process.env.SERVER_URL}/fetchData/fetchReviewData?userId=${userId}`);
             setReviews(response.data.reviews);
         }catch (error) {
             console.error('Error fetching data:', error.message);
