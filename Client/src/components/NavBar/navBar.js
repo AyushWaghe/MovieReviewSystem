@@ -81,9 +81,10 @@ const Navbar = ({ filterData }) => {
     <nav className="navbar">
       {/* Navigation Content */}
       <div className="content">
-        {/* Logo */}
+        
         <div className="logo">
-          <img src="logo.png" alt="logo" />
+          <img src="moviemania.png" alt="logo" />
+          <h2>MovieMania</h2>
         </div>
 
         {/* Desktop Navigation */}
